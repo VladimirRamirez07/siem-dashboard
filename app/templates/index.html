@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <span class="shield">🛡️</span>
+                <div>
+                    <h1>SIEM Dashboard</h1>
+                    <p class="subtitle">Security Information & Event Management</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="status-dot"></div>
+                <span>Live Monitoring</span>
+                <button onclick="generateLogs()" class="btn-generate">⚡ Generate Events</button>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon total">📊</div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Events</span>
+                    <span class="stat-value" id="total">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon high">🔴</div>
+                <div class="stat-info">
+                    <span class="stat-label">High Severity</span>
+                    <span class="stat-value" id="high">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon medium">🟡</div>
+                <div class="stat-info">
+                    <span class="stat-label">Medium Severity</span>
+                    <span class="stat-value" id="medium">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon failed">⚠️</div>
+                <div class="stat-info">
+                    <span class="stat-label">Failed Events</span>
+                    <span class="stat-value" id="failed">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Event Types Distribution</h3>
+                <canvas id="eventChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Severity Levels</h3>
+                <canvas id="severityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="alerts-section">
+            <h3>🚨 Active Alerts</h3>
+            <div id="alerts-container"></div>
+        </div>
+
+        <!-- Logs Table -->
+        <div class="logs-section">
+            <h3>📋 Recent Events Log</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Event Type</th>
+                        <th>Source IP</th>
+                        <th>Username</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="logs-table"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
