@@ -1,25 +1,38 @@
 # 🛡️ SIEM Dashboard
 
-![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
-![Flask](https://img.shields.io/badge/Flask-3.0-green?logo=flask)
-![SQLite](https://img.shields.io/badge/SQLite-Database-orange?logo=sqlite)
-![Status](https://img.shields.io/badge/Status-Live-brightgreen)
+<div align="center">
 
-> **Live Demo:** https://siem-dashboard-mutf.onrender.com  
-> **Credentials:** admin / admin123
+![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge)
 
-A full-stack Security Information and Event Management (SIEM) system built with Python and Flask. Demonstrates Blue Team skills, real-time monitoring, and modern cybersecurity practices.
+### 🌐 [Live Demo](https://siem-dashboard-mutf.onrender.com) — Login: `admin / admin123`
+
+*A full-stack Security Information and Event Management system demonstrating Blue Team skills, real-time monitoring, and modern cybersecurity practices.*
+
+</div>
 
 ---
 
-## 🚀 Features
+## 📸 Preview
 
-- 🔐 **Authentication system** — login/logout with role-based access (admin/analyst)
-- 📊 **Real-time dashboard** — live charts updating every 10 seconds
-- 🚨 **Automated alerts** — HIGH and MEDIUM severity event detection
-- 🗄️ **Event persistence** — SQLite database storing all security events
-- ⚡ **Log simulation** — generates realistic security events on demand
-- 🌐 **Production deploy** — hosted on Render.com
+> Dashboard with real-time event detection, severity charts, and live alerts.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔐 Authentication | Login/logout with role-based access (Admin / Analyst) |
+| 📊 Live Dashboard | Charts and stats auto-refresh every 10 seconds |
+| 🚨 Alert System | Automated detection of HIGH and MEDIUM severity events |
+| 🗄️ Persistence | SQLite database storing all security events |
+| ⚡ Log Simulation | Generates realistic security events on demand |
+| 🌐 Production Ready | Deployed on Render.com with Gunicorn WSGI server |
 
 ---
 
@@ -38,56 +51,76 @@ A full-stack Security Information and Event Management (SIEM) system built with 
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Python 3.14, Flask 3.0, Flask-Login, Flask-SQLAlchemy
-- **Database:** SQLite
-- **Frontend:** HTML5, CSS3, JavaScript, Chart.js
-- **Auth:** Werkzeug password hashing, Flask-Login sessions
-- **Deploy:** Render.com, Gunicorn
+| Layer | Technology |
+|-------|-----------|
+| Backend | Python 3.14, Flask 3.0 |
+| Auth | Flask-Login, Werkzeug password hashing |
+| Database | SQLite + Flask-SQLAlchemy |
+| Frontend | HTML5, CSS3, JavaScript |
+| Charts | Chart.js 4.4 |
+| Server | Gunicorn (WSGI) |
+| Deploy | Render.com |
 
 ---
 
 ## ⚙️ Local Installation
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/VladimirRamirez07/siem-dashboard.git
 cd siem-dashboard
+
+# 2. Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate  # Windows
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Mac/Linux
+
+# 3. Install dependencies
 pip install -r requirements.txt
+
+# 4. Run the app
 python run.py
 ```
 
-Open **http://127.0.0.1:5000** — login with `admin / admin123`
+Open **http://127.0.0.1:5000** and login with `admin / admin123`
 
 ---
 
 ## 📁 Project Structure
 siem-dashboard/
 ├── app/
-│   ├── init.py        # App factory, DB init, Login manager
-│   ├── models.py          # User and LogEvent models
-│   ├── routes.py          # Dashboard API endpoints
-│   ├── auth.py            # Login/logout routes
-│   ├── log_generator.py   # Fake security event generator
+│   ├── init.py          # App factory, DB init, Login manager
+│   ├── models.py            # User and LogEvent database models
+│   ├── routes.py            # Dashboard API endpoints
+│   ├── auth.py              # Login / logout routes
+│   ├── log_generator.py     # Fake security event generator
 │   ├── templates/
-│   │   ├── index.html     # Dashboard UI
-│   │   └── login.html     # Login page
+│   │   ├── index.html       # Main dashboard UI
+│   │   └── login.html       # Login page
 │   └── static/
-│       ├── css/style.css  # Dark theme styles
-│       └── js/dashboard.js # Real-time chart updates
+│       ├── css/style.css    # Dark theme styles
+│       └── js/dashboard.js  # Real-time chart updates
 ├── requirements.txt
-├── Procfile
-└── run.py
+├── Procfile                 # Gunicorn start command
+└── run.py                   # App entry point
 ---
 
 ## 🔗 API Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Dashboard (requires auth) |
-| `/login` | GET/POST | Authentication |
-| `/logout` | GET | End session |
-| `/api/logs` | GET | Last 50 events |
-| `/api/stats` | GET | Event statistics |
-| `/api/alerts` | GET | HIGH/MEDIUM alerts |
-| `/api/generate` | GET | Generate 10 new events |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/` | ✅ | Main dashboard |
+| GET/POST | `/login` | ❌ | Authentication |
+| GET | `/logout` | ✅ | End session |
+| GET | `/api/logs` | ✅ | Last 50 events |
+| GET | `/api/stats` | ✅ | Event statistics |
+| GET | `/api/alerts` | ✅ | HIGH/MEDIUM alerts |
+| GET | `/api/generate` | ✅ | Generate 10 new events |
+
+---
+
+## 👤 Author
+
+**Vladimir Ramirez** — [@VladimirRamirez07](https://github.com/VladimirRamirez07)
+
+*Software Engineering Student | QA & Testing | Security | Backend Development*
