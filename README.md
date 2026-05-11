@@ -87,23 +87,31 @@ Open **http://127.0.0.1:5000** and login with `admin / admin123`
 ---
 
 ## 📁 Project Structure
+
+```
 siem-dashboard/
+│
 ├── app/
-│   ├── init.py          # App factory, DB init, Login manager
+│   ├── __init__.py          # App factory, DB init, Login manager
 │   ├── models.py            # User and LogEvent database models
 │   ├── routes.py            # Dashboard API endpoints
 │   ├── auth.py              # Login / logout routes
 │   ├── log_generator.py     # Fake security event generator
+│   │
 │   ├── templates/
 │   │   ├── index.html       # Main dashboard UI
 │   │   └── login.html       # Login page
+│   │
 │   └── static/
-│       ├── css/style.css    # Dark theme styles
-│       └── js/dashboard.js  # Real-time chart updates
-├── requirements.txt
+│       ├── css/
+│       │   └── style.css    # Dark theme styles
+│       └── js/
+│           └── dashboard.js # Real-time chart updates
+│
+├── requirements.txt         # Python dependencies
 ├── Procfile                 # Gunicorn start command
 └── run.py                   # App entry point
----
+```
 
 ## 🔗 API Endpoints
 
