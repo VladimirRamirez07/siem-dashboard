@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, render_template
+from flask_login import login_required, current_user
 from .models import db, LogEvent
 from .log_generator import generate_multiple_logs
 from datetime import datetime
@@ -6,15 +7,18 @@ from datetime import datetime
 main = Blueprint('main', __name__)
 
 @main.route('/')
+@login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', user=current_user)
 
 @main.route('/api/logs')
+@login_required
 def get_logs():
     logs = LogEvent.query.order_by(LogEvent.timestamp.desc()).limit(50).all()
     return jsonify([log.to_dict() for log in logs])
 
 @main.route('/api/generate')
+@login_required
 def generate_logs():
     new_logs = generate_multiple_logs(10)
     for log_data in new_logs:
@@ -29,9 +33,10 @@ def generate_logs():
         )
         db.session.add(log)
     db.session.commit()
-    return jsonify({"message": f"Generated 10 new logs", "status": "success"})
+    return jsonify({"message": "Generated 10 new logs", "status": "success"})
 
 @main.route('/api/stats')
+@login_required
 def get_stats():
     total = LogEvent.query.count()
     high = LogEvent.query.filter_by(severity='HIGH').count()
@@ -52,6 +57,7 @@ def get_stats():
     })
 
 @main.route('/api/alerts')
+@login_required
 def get_alerts():
     alerts = LogEvent.query.filter(
         LogEvent.severity.in_(['HIGH', 'MEDIUM'])
