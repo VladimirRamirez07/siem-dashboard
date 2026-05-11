@@ -1,12 +1,16 @@
+import os
 from flask import Flask
 from flask_login import LoginManager
 from .models import db, User
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../data/siem.db'
+
+    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
+    os.makedirs(db_path, exist_ok=True)
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(db_path, "siem.db")}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = 'siem-super-secret-key-2024'
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'siem-super-secret-key-2024')
 
     db.init_app(app)
 
@@ -21,7 +25,6 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-        # Crear usuario admin por defecto
         if not User.query.filter_by(username='admin').first():
             admin = User(username='admin', role='admin')
             admin.set_password('admin123')
