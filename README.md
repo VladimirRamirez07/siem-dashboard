@@ -19,7 +19,7 @@
 
 ## 📸 Preview
 
-> Dashboard with real-time event detection, severity charts, and live alerts.
+> Dashboard with real-time event detection, severity charts, and live alerts
 
 ---
 
