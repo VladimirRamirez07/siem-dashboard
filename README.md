@@ -11,7 +11,7 @@
 
 ### 🌐 [Live Demo](https://siem-dashboard-mutf.onrender.com) — Login: `admin / admin123`
 
-*A full-stack Security Information and Event Management system demonstrating Blue Team skills, real-time monitoring, and modern cybersecurity practices.*
+*A full-stack Security Information and Event Management system demonstrating Blue Team skills, real-time monitoring, and modern cybersecurity practices*
 
 </div>
 
